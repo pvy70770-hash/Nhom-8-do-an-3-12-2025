@@ -1,0 +1,903 @@
+/* ==================== NAVBAR TOPCV STYLES ==================== */
+.navbar-topcv {
+  background: linear-gradient(90deg, #0043f7 0%, #0066ff 100%);
+  box-shadow: 0 2px 8px rgba(0, 67, 247, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  gap: 20px;
+}
+
+/* Logo */
+.navbar-logo {
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.navbar-logo h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+/* Navigation Links */
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  margin-left: 40px;
+}
+
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-link-item {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 24px;
+  transition: all 0.3s ease;
+  position: relative;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-link-item:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.nav-link-item.active {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.dropdown-arrow {
+  font-size: 10px;
+  transition: transform 0.3s ease;
+  display: none;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 8px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  padding: 8px 0;
+  z-index: 1001;
+}
+
+.dropdown-menu button {
+  width: 100%;
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  text-align: left;
+  color: #263a4d;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dropdown-menu button:hover {
+  background-color: #f5f7fa;
+  color: #0043f7;
+}
+
+.employer-link {
+  background: linear-gradient(135deg, #0058f7 0%, #0070ff 100%);
+  color: white !important;
+  font-weight: 700;
+  box-shadow: 0 2px 10px rgba(0, 88, 247, 0.3);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.employer-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 88, 247, 0.4);
+  background: linear-gradient(135deg, #0070ff 0%, #0088ff 100%);
+}
+
+.employer-link.active {
+  background: linear-gradient(135deg, #0040d0 0%, #0058f7 100%);
+}
+
+/* Right Actions */
+.navbar-actions {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+
+.btn-login,
+.btn-register,
+.btn-logout {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  white-space: nowrap;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.btn-login {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+.btn-login:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.btn-register {
+  background: #ffffff;
+  color: #0043f7;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+}
+
+.btn-register:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
+  background: #f0f7ff;
+}
+
+.btn-logout {
+  background-color: #ff4757;
+  color: #ffffff;
+  border: none;
+}
+
+.btn-logout:hover {
+  background-color: #ff3344;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 71, 87, 0.4);
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+  display: none;
+  background: #2462d6;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+  background: #009640;
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background-color: white;
+  border-top: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.mobile-menu-item {
+  width: 100%;
+  padding: 16px 24px;
+  text-align: left;
+  background: none;
+  border: none;
+  color: #263a4d;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid #f5f7fa;
+}
+
+.mobile-menu-item:hover {
+  background-color: #f5f7fa;
+  color: #00b14f;
+}
+
+.mobile-menu-item.active {
+  background-color: #e8f5e9;
+  color: #00b14f;
+  font-weight: 700;
+}
+
+.employer-link-mobile {
+  background: linear-gradient(135deg, #00b14f 0%, #00d959 100%);
+  color: white !important;
+  font-weight: 700;
+}
+
+.employer-link-mobile:hover {
+  background: linear-gradient(135deg, #00c957 0%, #00e862 100%);
+}
+
+.mobile-menu-divider {
+  height: 8px;
+  background-color: #f5f7fa;
+  margin: 0;
+  border: none;
+}
+
+/* ==================== RESPONSIVE NAVBAR ==================== */
+@media (max-width: 1200px) {
+  .navbar-nav {
+    gap: 4px;
+    margin-left: 20px;
+  }
+  
+  .nav-link-item {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 992px) {
+  .navbar-logo h1 {
+    font-size: 28px;
+  }
+  
+  .navbar-nav {
+    margin-left: 12px;
+  }
+  
+  .navbar-actions {
+    gap: 8px;
+  }
+  
+  .btn-login,
+  .btn-register,
+  .btn-profile,
+  .btn-logout {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-container {
+    padding: 12px 16px;
+  }
+  
+  .navbar-nav {
+    display: none;
+  }
+  
+  .navbar-actions {
+    display: none;
+  }
+  
+  .mobile-menu-btn {
+    display: block;
+  }
+  
+  .mobile-menu {
+    display: flex;
+    max-height: 500px;
+  }
+}
+
+@media (min-width: 769px) {
+  .navbar-actions {
+    display: flex !important;
+  }
+  
+  .mobile-menu {
+    display: none !important;
+  }
+}
+
+/* ==================== OLD NAVIGATION (Legacy) ==================== */
+.nav {
+  display: flex;
+  background: rgb(37,114,255);
+  padding: 0 24px;
+  min-height: 72px;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav-logo h2 {
+  color: white;
+  cursor: pointer;
+}
+
+.nav-list {
+  display: flex;
+  gap: 12px;
+}
+
+.nav-link {
+  padding: 8.5px 17px;
+  background: rgb(0,88,247);
+  border: 1px solid #ffffff;
+  border-radius: 34px;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background: rgb(0,88,247);
+  transform: translateY(-2px);
+}
+
+.nav-link.login {
+  border-color: rgb(0,88,247);
+}
+
+.nav-link.logout {
+  background: #ef4444;
+  border-color: #ef4444;
+}
+
+/* ==================== AUTH FORMS ==================== */
+.auth-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, rgb(0,23,68), rgb(0,88,248));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.auth-box {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 450px;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.auth-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #263a4d;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  color: #263a4d;
+  margin-bottom: 8px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dadada;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.auth-button {
+  width: 100%;
+  padding: 12px;
+  background: rgb(0,88,248);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.auth-button:hover {
+  background: rgb(0,70,200);
+}
+
+.auth-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 20px;
+  color: #7f878f;
+}
+
+.auth-link {
+  color: rgb(0,88,248);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.error-message {
+  background: #fee;
+  color: #ef4444;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.success-message {
+  background: #d1fae5;
+  color: rgb(0,88,248);
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* ==================== CATEGORIES & TOOLS SECTIONS ==================== */
+.categories-section,
+.tools-section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #F5F5F5;
+;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #263a4d;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.categories-grid,
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.category-card,
+.tool-card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.category-card:hover,
+.tool-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.category-icon {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.location-input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #263a4d;
+  font-weight: 500;
+}
+
+/* ==================== EMPLOYER BUTTON ==================== */
+.employer-btn {
+  background: linear-gradient(135deg, #005eb1 0%, #006dd9 100%);
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 24px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(0, 177, 79, 0.3);
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.employer-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(17, 90, 207, 0.4);
+  background: linear-gradient(135deg, #00c957 0%, #00e862 100%);
+}
+
+.employer-btn:active {
+  transform: translateY(0);
+}
+
+.employer-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.employer-text {
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+/* ==================== EMPLOYER REGISTER FORM ==================== */
+.employer-register-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.employer-register-box {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  max-width: 800px;
+  width: 100%;
+  padding: 40px;
+}
+
+.employer-register-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.employer-register-header h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 8px 0;
+}
+
+.employer-register-header p {
+  font-size: 16px;
+  color: #6c757d;
+  margin: 0;
+}
+
+.employer-register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-section {
+  border-bottom: 2px solid #f1f3f5;
+  padding-bottom: 24px;
+}
+
+.form-section:last-of-type {
+  border-bottom: none;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.required {
+  color: #dc3545;
+}
+
+.form-input,
+.form-select {
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.3s;
+}
+
+.form-input:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-input:disabled,
+.form-select:disabled {
+  background: #f8f9fa;
+  cursor: not-allowed;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.submit-button {
+  background: linear-gradient(135deg, #00b14f 0%, #00d959 100%);
+  color: white;
+  border: none;
+  padding: 16px 24px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(0, 177, 79, 0.3);
+  margin-top: 8px;
+}
+
+.submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 177, 79, 0.4);
+}
+
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.login-link,
+.register-link {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.login-text,
+.register-text {
+  font-size: 14px;
+  color: #6c757d;
+  margin-right: 8px;
+}
+
+.login-button,
+.register-button {
+  background: none;
+  border: none;
+  color: #667eea;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: all 0.3s;
+}
+
+.login-button:hover,
+.register-button:hover {
+  color: #5568d3;
+}
+
+/* ==================== EMPLOYER LOGIN FORM ==================== */
+.employer-login-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.employer-login-box {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  max-width: 450px;
+  width: 100%;
+  padding: 40px;
+}
+
+.employer-login-header {
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.back-btn {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #f1f3f5;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a5568;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.back-btn:hover {
+  background: #e2e8f0;
+}
+
+.employer-login-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 8px 0;
+}
+
+.employer-login-header p {
+  font-size: 14px;
+  color: #6c757d;
+  margin: 0;
+}
+
+.employer-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.help-text {
+  text-align: center;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.help-text p {
+  font-size: 14px;
+  color: #6c757d;
+  margin: 0;
+}
+
+.help-text a {
+  color: #667eea;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.help-text a:hover {
+  text-decoration: underline;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1024px) {
+  .employer-text {
+    display: none;
+  }
+
+  .employer-btn {
+    padding: 10px 16px;
+    margin-right: 16px;
+  }
+
+  .employer-icon {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .employer-register-box,
+  .employer-login-box {
+    padding: 30px 20px;
+  }
+
+  .employer-register-header h2,
+  .employer-login-header h2 {
+    font-size: 24px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .back-btn {
+    position: static;
+    margin-bottom: 16px;
+    width: fit-content;
+  }
+  
+  .employer-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    margin-right: 12px;
+  }
+
+  .employer-icon {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .employer-btn {
+    padding: 8px;
+    margin-right: 8px;
+  }
+
+  .employer-icon {
+    font-size: 16px;
+  }
+}
+
+/* ==================== PROFILE BUTTON STYLES ==================== */
+.btn-profile {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(90deg, #0043f7 0%, #0066ff 100%);
+  color: #ffffff;
+  padding: 10px 24px;
+  border: 2px solid #ffffff;
+  border-radius: 50px;
+  visibility: visible !important;
+  opacity: 1 !important;
+  box-shadow: 0 2px 8px rgba(0, 67, 247, 0.3);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.btn-profile:hover {
+  background: linear-gradient(90deg, #0050ff 0%, #0078ff 100%);
+  border-color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 67, 247, 0.4);
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ffffff;
+}

@@ -1,0 +1,520 @@
+# 🎣 Custom Hooks Usage Guide
+
+## 📦 Cài đặt
+
+Tạo thư mục `src/hooks/` và đặt 3 files:
+- `useAuth.js`
+- `useJobs.js`
+- `useLocalStorage.js`
+- `index.js` (export tất cả)
+
+---
+
+## 1. 🔐 useAuth Hook
+
+Hook để quản lý authentication (đăng nhập, đăng ký, logout).
+
+### Import
+```javascript
+import { useAuth } from '../hooks';
+```
+
+### Basic Usage
+
+```javascript
+function LoginPage() {
+  const { 
+    user, 
+    isLoggedIn, 
+    login, 
+    logout, 
+    loading, 
+    error 
+  } = useAuth();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const result = await login(email, password);
+    
+    if (result.success) {
+      console.log('Đăng nhập thành công!', result.user);
+      // Navigate hoặc làm gì đó
+    } else {
+      console.error('Lỗi:', result.error);
+    }
+  };
+
+  if (loading) return <div>Loading...</div>;
+
+  return (
+    <div>
+      {isLoggedIn ? (
+        <div>
+          <p>Xin chào, {user?.name}!</p>
+          <button onClick={logout}>Đăng xuất</button>
+        </div>
+      ) : (
+        <form onSubmit={handleLogin}>
+          {/* Login form */}
+        </form>
+      )}
+      {error && <div className="error">{error}</div>}
+    </div>
+  );
+}
+```
+
+### Available Methods
+
+```javascript
+const {
+  user,              // Object: Thông tin user hiện tại
+  isLoggedIn,        // Boolean: Trạng thái đăng nhập
+  loading,           // Boolean: Loading state
+  error,             // String: Error message
+  
+  login,             // Function(email, password): Đăng nhập
+  logout,            // Function(): Đăng xuất
+  register,          // Function(userData): Đăng ký
+  updateUser,        // Function(updatedData): Cập nhật profile
+  changePassword,    // Function(oldPass, newPass): Đổi mật khẩu
+  checkAuth,         // Function(): Kiểm tra auth
+  clearError         // Function(): Xóa error
+} = useAuth();
+```
+
+### Examples
+
+**Đăng ký:**
+```javascript
+const handleRegister = async () => {
+  const result = await register({
+    name: 'John Doe',
+    email: 'john@example.com',
+    password: 'password123'
+  });
+  
+  if (result.success) {
+    // Auto login sau khi đăng ký
+  }
+};
+```
+
+**Cập nhật profile:**
+```javascript
+const handleUpdateProfile = async () => {
+  const result = await updateUser({
+    name: 'New Name',
+    phone: '0123456789'
+  });
+};
+```
+
+**Đổi mật khẩu:**
+```javascript
+const handleChangePassword = async () => {
+  const result = await changePassword('oldPassword', 'newPassword');
+  if (result.success) {
+    alert('Đổi mật khẩu thành công!');
+  }
+};
+```
+
+---
+
+## 2. 💼 useJobs Hook
+
+Hook để quản lý jobs (fetch, filter, sort, search).
+
+### Import
+```javascript
+import { useJobs } from '../hooks';
+```
+
+### Basic Usage
+
+```javascript
+function JobListPage() {
+  const {
+    filteredJobs,
+    loading,
+    error,
+    filters,
+    updateFilters,
+    resetFilters,
+    sortBy,
+    updateSort
+  } = useJobs();
+
+  if (loading) return <div>Loading jobs...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  return (
+    <div>
+      {/* Filters */}
+      <button onClick={() => updateFilters({ location: 'hà nội' })}>
+        Hà Nội
+      </button>
+      <button onClick={resetFilters}>Reset Filters</button>
+
+      {/* Jobs */}
+      <div className="jobs-grid">
+        {filteredJobs.map(job => (
+          <JobCard key={job.id} job={job} />
+        ))}
+      </div>
+    </div>
+  );
+}
+```
+
+### Available Methods
+
+```javascript
+const {
+  jobs,                    // Array: Tất cả jobs
+  filteredJobs,           // Array: Jobs sau khi filter/sort
+  loading,                // Boolean: Loading state
+  error,                  // String: Error message
+  pagination,             // Object: Thông tin phân trang
+  filters,                // Object: Current filters
+  sortBy,                 // String: Current sort method
+  
+  fetchJobs,              // Function(page): Fetch jobs
+  getJobById,             // Function(id): Get single job
+  getJobsByCategory,      // Function(category): Get by category
+  searchJobs,             // Function(query): Search
+  updateFilters,          // Function(filters): Update filters
+  resetFilters,           // Function(): Reset all filters
+  updateSort,             // Function(sortMethod): Update sort
+  clearError,             // Function(): Clear error
+  refresh                 // Function(): Refresh data
+} = useJobs();
+```
+
+### Examples
+
+**Filter jobs:**
+```javascript
+// Filter by location
+updateFilters({ location: 'hồ chí minh' });
+
+// Multiple filters
+updateFilters({
+  location: 'hà nội',
+  salary: 'over30',
+  experience: '2-3'
+});
+
+// Reset
+resetFilters();
+```
+
+**Sort jobs:**
+```javascript
+updateSort('newest');    // Mới nhất
+updateSort('oldest');    // Cũ nhất
+updateSort('salary_high'); // Lương cao
+```
+
+**Search:**
+```javascript
+const handleSearch = async (query) => {
+  const result = await searchJobs(query);
+  if (result.success) {
+    console.log('Found:', result.data.length, 'jobs');
+  }
+};
+```
+
+**Get job by ID:**
+```javascript
+const loadJobDetail = async (jobId) => {
+  const result = await getJobById(jobId);
+  if (result.success) {
+    setCurrentJob(result.data);
+  }
+};
+```
+
+**Disable auto-fetch:**
+```javascript
+const { fetchJobs } = useJobs({ autoFetch: false });
+
+// Manual fetch khi cần
+useEffect(() => {
+  fetchJobs();
+}, []);
+```
+
+---
+
+## 3. 💾 useLocalStorage Hook
+
+Hook để lưu trữ data vào localStorage với React state sync.
+
+### Import
+```javascript
+import { 
+  useLocalStorage,
+  useSavedJobs,
+  useSearchHistory,
+  useUserPreferences,
+  useFormDraft,
+  useRecentViews
+} from '../hooks';
+```
+
+### Basic Usage
+
+```javascript
+function MyComponent() {
+  const [name, setName, removeName] = useLocalStorage('userName', 'Guest');
+
+  return (
+    <div>
+      <input 
+        value={name} 
+        onChange={(e) => setName(e.target.value)} 
+      />
+      <button onClick={removeName}>Clear</button>
+    </div>
+  );
+}
+```
+
+### 3.1 useSavedJobs
+
+Lưu danh sách jobs đã bookmark.
+
+```javascript
+function JobCard({ job }) {
+  const { savedJobs, saveJob, unsaveJob, isJobSaved } = useSavedJobs();
+  
+  const isSaved = isJobSaved(job.id);
+
+  const handleToggleSave = () => {
+    if (isSaved) {
+      unsaveJob(job.id);
+    } else {
+      saveJob(job);
+    }
+  };
+
+  return (
+    <div>
+      <h3>{job.title}</h3>
+      <button onClick={handleToggleSave}>
+        {isSaved ? '❤️ Đã lưu' : '🤍 Lưu'}
+      </button>
+    </div>
+  );
+}
+
+// Hiển thị danh sách saved jobs
+function SavedJobsPage() {
+  const { savedJobs, clearAllSavedJobs } = useSavedJobs();
+
+  return (
+    <div>
+      <h2>Jobs đã lưu ({savedJobs.length})</h2>
+      {savedJobs.map(job => <JobCard key={job.id} job={job} />)}
+      <button onClick={clearAllSavedJobs}>Xóa tất cả</button>
+    </div>
+  );
+}
+```
+
+### 3.2 useSearchHistory
+
+Lưu lịch sử tìm kiếm.
+
+```javascript
+function SearchBar() {
+  const { searchHistory, addSearch, removeSearch, clearHistory } = useSearchHistory(10);
+  const [query, setQuery] = useState('');
+
+  const handleSearch = () => {
+    addSearch(query);
+    // Thực hiện tìm kiếm...
+  };
+
+  return (
+    <div>
+      <input 
+        value={query} 
+        onChange={(e) => setQuery(e.target.value)} 
+      />
+      <button onClick={handleSearch}>Tìm</button>
+
+      {/* Recent searches */}
+      <div className="recent-searches">
+        <h4>Tìm kiếm gần đây:</h4>
+        {searchHistory.map((term, idx) => (
+          <div key={idx}>
+            <span onClick={() => setQuery(term)}>{term}</span>
+            <button onClick={() => removeSearch(term)}>×</button>
+          </div>
+        ))}
+        <button onClick={clearHistory}>Xóa lịch sử</button>
+      </div>
+    </div>
+  );
+}
+```
+
+### 3.3 useUserPreferences
+
+Lưu preferences của user.
+
+```javascript
+function SettingsPage() {
+  const { preferences, updatePreference, updatePreferences } = useUserPreferences();
+
+  return (
+    <div>
+      <label>
+        <input
+          type="checkbox"
+          checked={preferences.notifications}
+          onChange={(e) => updatePreference('notifications', e.target.checked)}
+        />
+        Bật thông báo
+      </label>
+
+      <label>
+        <input
+          type="checkbox"
+          checked={preferences.emailAlerts}
+          onChange={(e) => updatePreference('emailAlerts', e.target.checked)}
+        />
+        Email alerts
+      </label>
+
+      <select 
+        value={preferences.theme}
+        onChange={(e) => updatePreference('theme', e.target.value)}
+      >
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </div>
+  );
+}
+```
+
+### 3.4 useFormDraft
+
+Tự động lưu draft của form (tránh mất dữ liệu).
+
+```javascript
+function JobApplicationForm() {
+  const { draft, saveDraft, hasDraft, clearDraft } = useFormDraft('jobApplication');
+  const [formData, setFormData] = useState(draft || {
+    name: '',
+    email: '',
+    phone: '',
+    coverLetter: ''
+  });
+
+  // Auto-save draft mỗi 5 giây
+  useEffect(() => {
+    const timer = setInterval(() => {
+      saveDraft(formData);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [formData, saveDraft]);
+
+  const handleSubmit = () => {
+    // Submit form...
+    clearDraft(); // Xóa draft sau khi submit thành công
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      {hasDraft() && <div>⚠️ Có bản nháp đã lưu</div>}
+      {/* Form fields */}
+    </form>
+  );
+}
+```
+
+### 3.5 useRecentViews
+
+Lưu jobs đã xem gần đây.
+
+```javascript
+function JobDetailPage({ jobId }) {
+  const { addView } = useRecentViews(5);
+  const [job, setJob] = useState(null);
+
+  useEffect(() => {
+    // Fetch job detail...
+    fetchJob(jobId).then(jobData => {
+      setJob(jobData);
+      addView(jobData); // Lưu vào recent views
+    });
+  }, [jobId, addView]);
+
+  return <div>{/* Job detail */}</div>;
+}
+
+// Hiển thị recent views
+function RecentViewsSection() {
+  const { recentViews, removeView, clearRecentViews } = useRecentViews();
+
+  return (
+    <div>
+      <h3>Đã xem gần đây</h3>
+      {recentViews.map(job => (
+        <div key={job.id}>
+          <JobCard job={job} />
+          <button onClick={() => removeView(job.id)}>Xóa</button>
+        </div>
+      ))}
+    </div>
+  );
+}
+```
+
+---
+
+## 🎯 Best Practices
+
+1. **useAuth:** Wrap app với AuthProvider hoặc dùng hook này ở top-level
+2. **useJobs:** Dùng `autoFetch: false` nếu muốn control việc fetch manually
+3. **useLocalStorage:** Prefix keys để tránh conflict (e.g., `app_userName`)
+4. **Error Handling:** Luôn check `result.success` trước khi sử dụng data
+5. **Loading States:** Hiển thị loading indicator khi `loading === true`
+
+---
+
+## 📝 Notes
+
+- Tất cả hooks đều có error handling built-in
+- localStorage hooks tự động sync giữa các tabs
+- Có thể customize bằng cách modify hooks theo nhu cầu
+- Backend endpoints có thể khác, update URLs trong hooks
+
+---
+
+## 🚀 Quick Start
+
+```javascript
+// App.js
+import { useAuth, useJobs, useSavedJobs } from './hooks';
+
+function App() {
+  const { isLoggedIn, user } = useAuth();
+  const { filteredJobs, loading } = useJobs();
+  const { savedJobs } = useSavedJobs();
+
+  return (
+    <div>
+      {isLoggedIn && <p>Welcome, {user?.name}!</p>}
+      <p>Total Jobs: {filteredJobs.length}</p>
+      <p>Saved Jobs: {savedJobs.length}</p>
+    </div>
+  );
+}
+```

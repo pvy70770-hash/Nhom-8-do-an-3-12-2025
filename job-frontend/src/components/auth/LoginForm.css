@@ -1,0 +1,282 @@
+/* -------------------- RESET -------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* -------------------- LOGIN CONTAINER -------------------- */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, rgba(13, 0, 196, 0) 0%, rgba(19, 22, 184, 0.1) 100%);
+}
+
+/* -------------------- LOGIN BOX -------------------- */
+.login-box {
+  width: 477px;
+  background: #fff;
+  border-radius: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* -------------------- HEADER -------------------- */
+.login-header {
+  background: #102abb;
+  height: 103px;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-header h2 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  color: #fff;
+}
+
+/* -------------------- ERROR MESSAGE -------------------- */
+.error-message {
+  margin: 20px 43px 0;
+  padding: 12px 16px;
+  background: #fee;
+  border: 1px solid #ef4444;
+  border-radius: 8px;
+  color: #ef4444;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* -------------------- FORM -------------------- */
+.login-form-wrapper {
+  padding: 41px 33px 50px;
+}
+
+.form-group {
+  margin-bottom: 28px; /* tạo khoảng cách hợp lý giữa 2 ô nhập */
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 10px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: #000;
+}
+
+/* -------------------- INPUT -------------------- */
+.form-input {
+  width: 100%;
+  height: 66px;
+  padding: 0 24px;
+  background: #dadada;
+  border: none;
+  border-radius: 100px;  /* chỉ bo tròn, không có viền vuông */
+  outline: none;         /* bỏ viền mặc định khi focus */
+  box-shadow: none;      /* bỏ bóng thừa */
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: #000;
+  transition: 0.2s;
+}
+
+.form-input::placeholder {
+  color: #7f878f;
+}
+
+.form-input:focus {
+  background: #fff;
+  box-shadow: 0 0 0 2px #1841c9; /* tạo hiệu ứng viền sáng nhẹ khi focus */
+}
+
+/* Fix autofill (Chrome) */
+input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px #dadada inset !important;
+  border-radius: 100px !important;
+}
+
+/* -------------------- SUBMIT BUTTON -------------------- */
+.submit-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 248px;
+  height: 67px;
+  margin: 42px auto 0;
+  background: #264197;
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+}
+
+.submit-button:hover:not(:disabled) {
+  background: #1c41a5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 177, 79, 0.3);
+}
+
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* -------------------- DIVIDER -------------------- */
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 67px 0 40px;
+  gap: 16px;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #dadada;
+}
+
+.divider-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  color: #000;
+}
+
+/* -------------------- GOOGLE BUTTON -------------------- */
+.google-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 46px;
+  background: #dadada;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: #000;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.google-button:hover:not(:disabled) {
+  background: #c9c9c9;
+  transform: translateY(-2px);
+}
+
+.google-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* -------------------- REGISTER LINK -------------------- */
+.register-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 50px;
+}
+
+.register-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: #000;
+}
+
+.register-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  padding: 8px 28px;
+  background: #dadada;
+  color: #000;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+}
+
+.register-button:hover:not(:disabled) {
+  background: #1a23a5;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.register-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* -------------------- RESPONSIVE -------------------- */
+@media (max-width: 768px) {
+  .login-container {
+    padding: 20px 16px;
+  }
+
+  .login-box {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .login-form-wrapper {
+    padding: 32px 24px 40px;
+  }
+
+  .form-label {
+    font-size: 18px;
+  }
+
+  .form-input {
+    height: 56px;
+  }
+
+  .submit-button {
+    width: 100%;
+    height: 56px;
+    font-size: 18px;
+  }
+
+  .google-button {
+    height: 44px;
+    font-size: 14px;
+  }
+
+  .register-link {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-header h2 {
+    font-size: 20px;
+  }
+
+  .form-label {
+    font-size: 16px;
+  }
+
+  .form-input {
+    font-size: 14px;
+  }
+
+  .divider-text {
+    font-size: 18px;
+  }
+}

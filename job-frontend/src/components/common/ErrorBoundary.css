@@ -1,0 +1,323 @@
+/* =========================================
+   ERROR BOUNDARY STYLES
+   ========================================= */
+
+.error-boundary-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.error-boundary-content {
+  max-width: 600px;
+  width: 100%;
+  background: white;
+  border-radius: 16px;
+  padding: 48px 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Icon */
+.error-icon {
+  font-size: 80px;
+  margin-bottom: 24px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Title */
+.error-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0 0 16px 0;
+}
+
+/* Description */
+.error-description {
+  font-size: 16px;
+  color: #7f8c8d;
+  line-height: 1.6;
+  margin: 0 0 32px 0;
+}
+
+/* Error Details (Development only) */
+.error-details {
+  margin: 24px 0;
+  text-align: left;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+}
+
+.error-details summary {
+  font-weight: 600;
+  color: #495057;
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.error-details summary:hover {
+  color: #212529;
+}
+
+.error-stack {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #dee2e6;
+}
+
+.error-stack p {
+  margin: 0 0 12px 0;
+  font-size: 13px;
+  color: #495057;
+}
+
+.error-stack pre {
+  background: #fff;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #e74c3c;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.5;
+  margin: 8px 0 0 0;
+  border: 1px solid #fee;
+}
+
+/* Action Buttons */
+.error-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.error-actions button {
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #4a90e2, #357abd);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(74, 144, 226, 0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: #ecf0f1;
+  color: #2c3e50;
+}
+
+.btn-secondary:hover {
+  background: #d5dbdb;
+  transform: translateY(-2px);
+}
+
+.btn-warning {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+  color: white;
+}
+
+.btn-warning:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(243, 156, 18, 0.3);
+}
+
+/* Help Text */
+.error-help {
+  font-size: 14px;
+  color: #95a5a6;
+  margin: 0;
+}
+
+.error-link {
+  color: #4a90e2;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.error-link:hover {
+  color: #357abd;
+  text-decoration: underline;
+}
+
+/* Error Count Badge */
+.error-badge {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 6px 14px;
+  background: #fee;
+  color: #e74c3c;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid #fcc;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 600px) {
+  .error-boundary-content {
+    padding: 32px 24px;
+  }
+
+  .error-icon {
+    font-size: 64px;
+  }
+
+  .error-title {
+    font-size: 24px;
+  }
+
+  .error-description {
+    font-size: 14px;
+  }
+
+  .error-actions {
+    flex-direction: column;
+  }
+
+  .error-actions button {
+    width: 100%;
+  }
+}
+
+/* =========================================
+   DARK MODE
+   ========================================= */
+
+@media (prefers-color-scheme: dark) {
+  .error-boundary-container {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  }
+
+  .error-boundary-content {
+    background: #0f3460;
+    color: #e8e8e8;
+  }
+
+  .error-title {
+    color: #ffffff;
+  }
+
+  .error-description {
+    color: #bdc3c7;
+  }
+
+  .error-details {
+    background: #1a1a2e;
+    border-color: #2c3e50;
+  }
+
+  .error-details summary {
+    color: #ecf0f1;
+  }
+
+  .error-stack {
+    border-top-color: #2c3e50;
+  }
+
+  .error-stack p {
+    color: #bdc3c7;
+  }
+
+  .error-stack pre {
+    background: #000;
+    border-color: #c33;
+    color: #ff6b6b;
+  }
+
+  .btn-secondary {
+    background: #2c3e50;
+    color: #ecf0f1;
+  }
+
+  .btn-secondary:hover {
+    background: #34495e;
+  }
+
+  .error-help {
+    color: #7f8c8d;
+  }
+
+  .error-badge {
+    background: #3d0000;
+    color: #ff6b6b;
+    border-color: #5d0000;
+  }
+}
+
+/* =========================================
+   ANIMATION VARIANTS
+   ========================================= */
+
+/* Shake animation for critical errors */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+  20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+.error-critical .error-icon {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Pulse animation for attention */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.error-actions button:focus {
+  animation: pulse 0.3s ease-in-out;
+  outline: none;
+}

@@ -1,0 +1,603 @@
+/* ==================== CATEGORIES SECTION ==================== */
+/* ==================== CATEGORIES SECTION ==================== */
+/* ==================== CATEGORIES SECTION ==================== */
+.categories-section {
+  background: #F5F5F5;
+  padding: 0px 20px 60px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: -40px;
+}
+
+.nganh-nghe{
+  margin-top: -311px !important;
+  font-family: Inter !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    font-size: 32px !important;
+    line-height: 40px !important;
+    text-align: center !important;
+    color: rgb(38, 58, 77) !important;
+}
+
+.categories-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 50px 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.category-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: 2px solid #e9ecef;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.category-card:hover::before {
+  transform: scaleX(1);
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+  border-color: #667eea;
+}
+
+.category-name {
+  font-size: 17px;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  transition: color 0.3s;
+  line-height: 1.4;
+}
+
+.category-card:hover .category-name {
+  color: #667eea;
+}
+
+/* ==================== CATEGORY JOBS PAGE ==================== */
+.category-jobs-page {
+  min-height: 100vh;
+  background: white;
+}
+
+/* Header */
+.category-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 80px 20px 50px;
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.05)"/></svg>');
+  background-size: 100px 100px;
+  opacity: 0.3;
+  animation: float 20s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100px); }
+}
+
+.header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.back-button {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateX(-5px);
+}
+
+.category-title {
+  font-size: 42px;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.jobs-count {
+  font-size: 16px;
+  opacity: 0.95;
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.jobs-count strong {
+  font-weight: 700;
+  font-size: 20px;
+  color: #ffd700;
+}
+
+/* Container */
+.category-jobs-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 40px;
+}
+
+/* Jobs Grid */
+.category-jobs-page .jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 28px;
+  margin-bottom: 40px;
+}
+
+/* Job Card */
+.category-jobs-page .job-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 2px solid #e9ecef;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-jobs-page .job-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.category-jobs-page .job-card:hover::after {
+  transform: scaleX(1);
+}
+
+.category-jobs-page .job-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(102, 126, 234, 0.2);
+  border-color: #667eea;
+}
+
+/* Card Header */
+.job-card-header {
+  border-bottom: 2px solid #f1f3f5;
+  padding-bottom: 12px;
+}
+
+.category-jobs-page .job-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;  
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  transition: color 0.3s;
+}
+
+.category-jobs-page .job-card:hover .job-title {
+  color: #667eea;
+}
+
+.category-jobs-page .company-name {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;  
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: #667eea;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Card Body */
+.job-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.job-info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #6c757d;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.job-info-item .icon {
+  font-size: 18px;
+}
+
+.info-text {
+  line-height: 1.5;
+}
+
+/* Card Footer */
+.job-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 2px solid #f1f3f5;
+}
+
+.category-badge {
+  background: linear-gradient(135deg, #e7f3ff 0%, #d4e9ff 100%);
+  color: #0066cc;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.view-detail {
+  color: #667eea;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.category-jobs-page .job-card:hover .view-detail {
+  transform: translateX(5px);
+}
+
+/* No Jobs */
+.no-jobs {
+  text-align: center;
+  padding: 80px 20px;
+  color: #6c757d;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.no-jobs-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.no-jobs h3 {
+  font-size: 24px;
+  color: #2d3748;
+  margin: 0 0 10px 0;
+}
+
+.no-jobs p {
+  font-size: 16px;
+  margin: 0 0 30px 0;
+}
+
+.back-home-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.back-home-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Pagination */
+.category-jobs-page .pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.pagination-btn {
+  background: white;
+  border: 2px solid #667eea;
+  color: #667eea;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  min-width: 100px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.pagination-btn:disabled {
+  background: #f1f3f5;
+  border-color: #dee2e6;
+  color: #adb5bd;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.pagination-info {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2d3748;
+  min-width: 120px;
+  text-align: center;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Loading & Error */
+.category-jobs-page .loading,
+.category-jobs-page .error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  font-size: 18px;
+  color: #6c757d;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  gap: 20px;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f4f6;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.category-jobs-page .error {
+  color: #dc3545;
+}
+
+.back-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  margin-top: 20px;
+}
+
+.back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1200px) {
+  .categories-container,
+  .header-content,
+  .category-jobs-container {
+    padding: 0 30px;
+  }
+  
+  .categories-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  /* Categories Section */
+  .categories-section {
+    padding: 50px 20px;
+  }
+
+  .categories-container {
+    padding: 0 20px;
+  }
+
+  .section-title {
+    font-size: 28px;
+    margin-bottom: 35px;
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+  }
+
+  .category-card {
+    padding: 20px 16px;
+  }
+
+  .category-name {
+    font-size: 15px;
+  }
+
+  /* Category Jobs Page */
+  .category-header {
+    padding: 50px 20px 35px;
+  }
+
+  .header-content {
+    padding: 0 20px;
+  }
+
+  .category-title {
+    font-size: 28px;
+  }
+
+  .jobs-count {
+    font-size: 14px;
+  }
+
+  .category-jobs-container {
+    padding: 30px 20px;
+  }
+
+  .category-jobs-page .jobs-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .category-jobs-page .job-card {
+    padding: 20px;
+  }
+
+  .category-jobs-page .job-title {
+    font-size: 16px;
+  }
+
+  .pagination-btn {
+    padding: 10px 16px;
+    font-size: 14px;
+    min-width: 80px;
+  }
+
+  .pagination-info {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .categories-section {
+    padding: 40px 15px;
+  }
+
+  .section-title {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .category-card {
+    padding: 18px 14px;
+    max-width: 100%;
+  }
+
+  .category-name {
+    font-size: 14px;
+  }
+
+  .category-title {
+    font-size: 24px;
+  }
+
+  .job-card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .category-jobs-page .pagination {
+    gap: 10px;
+  }
+
+  .pagination-btn {
+    min-width: 70px;
+    padding: 8px 12px;
+  }
+
+  .back-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}

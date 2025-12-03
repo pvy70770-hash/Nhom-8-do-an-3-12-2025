@@ -1,0 +1,523 @@
+# 🎨 Common Components Usage Guide
+
+## 📦 Components
+
+1. **LoadingSpinner** - Hiển thị loading states
+2. **ErrorBoundary** - Bắt và xử lý lỗi JavaScript
+
+---
+
+## 1. 🔄 LoadingSpinner Component
+
+Component để hiển thị các loading states khác nhau.
+
+### Import
+
+```javascript
+import LoadingSpinner, {
+  SmallSpinner,
+  LargeSpinner,
+  FullScreenSpinner,
+  DotsLoader,
+  PulseLoader,
+  BarsLoader,
+  SkeletonLoader,
+  CardSkeleton,
+  JobCardSkeleton
+} from './components/common/LoadingSpinner';
+```
+
+### Basic Usage
+
+```javascript
+// Default spinner
+<LoadingSpinner />
+
+// With text
+<LoadingSpinner text="Đang tải dữ liệu..." />
+
+// Different sizes
+<LoadingSpinner size="small" />
+<LoadingSpinner size="medium" />
+<LoadingSpinner size="large" />
+
+// Custom color
+<LoadingSpinner color="#ff6b6b" />
+
+// Full screen overlay
+<LoadingSpinner fullScreen text="Vui lòng đợi..." />
+```
+
+### Different Types
+
+```javascript
+// Spinner (default)
+<LoadingSpinner type="spinner" />
+
+// Dots animation
+<LoadingSpinner type="dots" />
+<DotsLoader />  {/* Shortcut */}
+
+// Pulse animation
+<LoadingSpinner type="pulse" />
+<PulseLoader />  {/* Shortcut */}
+
+// Bars animation
+<LoadingSpinner type="bars" />
+<BarsLoader />  {/* Shortcut */}
+```
+
+### Complete Examples
+
+**Example 1: Simple loading state**
+```javascript
+function JobList() {
+  const [loading, setLoading] = useState(true);
+  const [jobs, setJobs] = useState([]);
+
+  useEffect(() => {
+    fetchJobs().then(data => {
+      setJobs(data);
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) {
+    return <LoadingSpinner text="Đang tải danh sách việc làm..." />;
+  }
+
+  return (
+    <div>
+      {jobs.map(job => <JobCard key={job.id} job={job} />)}
+    </div>
+  );
+}
+```
+
+**Example 2: Full screen loading**
+```javascript
+function App() {
+  const [initializing, setInitializing] = useState(true);
+
+  useEffect(() => {
+    // Initialize app
+    initializeApp().then(() => {
+      setInitializing(false);
+    });
+  }, []);
+
+  if (initializing) {
+    return (
+      <FullScreenSpinner 
+        text="Đang khởi tạo ứng dụng..." 
+        color="#4a90e2"
+      />
+    );
+  }
+
+  return <MainApp />;
+}
+```
+
+**Example 3: Inline loading**
+```javascript
+function SubmitButton({ loading }) {
+  return (
+    <button disabled={loading}>
+      {loading ? (
+        <>
+          <SmallSpinner />
+          <span>Đang xử lý...</span>
+        </>
+      ) : (
+        'Gửi đơn'
+      )}
+    </button>
+  );
+}
+```
+
+### Skeleton Loading
+
+Use skeleton loaders để tạo better UX khi load data.
+
+```javascript
+// Basic skeleton
+<SkeletonLoader count={3} height={20} width="100%" />
+
+// Card skeleton
+function JobListSkeleton() {
+  return (
+    <div className="jobs-grid">
+      {Array.from({ length: 6 }).map((_, idx) => (
+        <JobCardSkeleton key={idx} />
+      ))}
+    </div>
+  );
+}
+
+// Custom skeleton
+<SkeletonLoader 
+  count={1} 
+  height={100} 
+  width="80%" 
+  borderRadius={8}
+/>
+```
+
+**Complete skeleton example:**
+```javascript
+function UserProfile() {
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    fetchUser().then(data => {
+      setUser(data);
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="profile-container">
+        <SkeletonLoader height={120} width={120} borderRadius={60} />
+        <SkeletonLoader height={24} width="60%" />
+        <SkeletonLoader height={16} width="80%" count={3} />
+      </div>
+    );
+  }
+
+  return (
+    <div className="profile-container">
+      <img src={user.avatar} alt={user.name} />
+      <h2>{user.name}</h2>
+      <p>{user.bio}</p>
+    </div>
+  );
+}
+```
+
+### Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'small' \| 'medium' \| 'large'` | `'medium'` | Kích thước spinner |
+| `text` | `string` | `''` | Text hiển thị dưới spinner |
+| `fullScreen` | `boolean` | `false` | Hiển thị full screen overlay |
+| `color` | `string` | `'#4a90e2'` | Màu của spinner |
+| `type` | `'spinner' \| 'dots' \| 'pulse' \| 'bars'` | `'spinner'` | Kiểu animation |
+
+---
+
+## 2. 🛡️ ErrorBoundary Component
+
+Component để bắt và xử lý lỗi JavaScript trong React component tree.
+
+### Import
+
+```javascript
+import ErrorBoundary, {
+  withErrorBoundary,
+  SimpleErrorFallback,
+  MinimalErrorFallback
+} from './components/common/ErrorBoundary';
+```
+
+### Basic Usage
+
+```javascript
+// Wrap toàn bộ app
+function App() {
+  return (
+    <ErrorBoundary>
+      <MainApp />
+    </ErrorBoundary>
+  );
+}
+
+// Wrap specific components
+function DashboardPage() {
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      
+      <ErrorBoundary>
+        <StatisticsWidget />
+      </ErrorBoundary>
+
+      <ErrorBoundary>
+        <ChartWidget />
+      </ErrorBoundary>
+    </div>
+  );
+}
+```
+
+### With Custom Fallback
+
+```javascript
+// Custom error UI
+<ErrorBoundary 
+  fallback={
+    <div className="custom-error">
+      <h2>Oops! Something went wrong</h2>
+      <button onClick={() => window.location.reload()}>
+        Reload
+      </button>
+    </div>
+  }
+>
+  <YourComponent />
+</ErrorBoundary>
+
+// Using pre-built fallbacks
+<ErrorBoundary fallback={<SimpleErrorFallback />}>
+  <YourComponent />
+</ErrorBoundary>
+
+<ErrorBoundary fallback={<MinimalErrorFallback />}>
+  <SmallWidget />
+</ErrorBoundary>
+```
+
+### With Error Callback
+
+```javascript
+// Log errors to external service
+<ErrorBoundary 
+  onError={(error, errorInfo) => {
+    // Send to Sentry, LogRocket, etc.
+    console.error('Error caught:', error);
+    console.error('Component stack:', errorInfo.componentStack);
+    
+    // Send to your backend
+    fetch('/api/log-error', {
+      method: 'POST',
+      body: JSON.stringify({ error: error.toString(), errorInfo })
+    });
+  }}
+>
+  <YourApp />
+</ErrorBoundary>
+```
+
+### With Reset Callback
+
+```javascript
+<ErrorBoundary 
+  onReset={() => {
+    // Clear error state
+    // Navigate to safe page
+    window.location.href = '/';
+  }}
+>
+  <YourComponent />
+</ErrorBoundary>
+```
+
+### Higher-Order Component
+
+Wrap components dễ dàng hơn với HOC.
+
+```javascript
+// Wrap component
+const SafeJobList = withErrorBoundary(JobList, {
+  onError: (error, errorInfo) => {
+    console.error('JobList error:', error);
+  }
+});
+
+// Use it
+<SafeJobList />
+```
+
+### Complete Examples
+
+**Example 1: App-level error boundary**
+```javascript
+// App.js
+function App() {
+  return (
+    <ErrorBoundary
+      onError={(error, errorInfo) => {
+        // Log to error tracking service
+        logErrorToSentry(error, errorInfo);
+      }}
+      onReset={() => {
+        // Clear app state and redirect
+        localStorage.clear();
+        window.location.href = '/';
+      }}
+    >
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/jobs" element={<JobsPage />} />
+          {/* ... */}
+        </Routes>
+        <Footer />
+      </Router>
+    </ErrorBoundary>
+  );
+}
+```
+
+**Example 2: Multiple boundaries for isolation**
+```javascript
+function DashboardPage() {
+  return (
+    <div className="dashboard">
+      <h1>Dashboard</h1>
+
+      {/* Nếu UserStats lỗi, chỉ nó bị ảnh hưởng */}
+      <ErrorBoundary fallback={<MinimalErrorFallback />}>
+        <UserStats />
+      </ErrorBoundary>
+
+      {/* JobsChart độc lập */}
+      <ErrorBoundary fallback={<MinimalErrorFallback />}>
+        <JobsChart />
+      </ErrorBoundary>
+
+      {/* RecentActivity độc lập */}
+      <ErrorBoundary fallback={<MinimalErrorFallback />}>
+        <RecentActivity />
+      </ErrorBoundary>
+    </div>
+  );
+}
+```
+
+**Example 3: With retry logic**
+```javascript
+function DataWidget() {
+  const [retryCount, setRetryCount] = useState(0);
+
+  return (
+    <ErrorBoundary
+      key={retryCount} // Reset boundary khi key thay đổi
+      fallback={
+        <div className="error-widget">
+          <p>Không thể tải dữ liệu</p>
+          <button onClick={() => setRetryCount(c => c + 1)}>
+            Thử lại ({retryCount}/3)
+          </button>
+        </div>
+      }
+    >
+      <DataDisplay />
+    </ErrorBoundary>
+  );
+}
+```
+
+**Example 4: Async error handling**
+```javascript
+// Note: ErrorBoundary KHÔNG bắt được:
+// - Event handlers errors
+// - Async code (setTimeout, promises)
+// - Server-side rendering
+// - Errors trong chính ErrorBoundary
+
+// ❌ KHÔNG bắt được
+function BadComponent() {
+  const handleClick = () => {
+    throw new Error('This will NOT be caught');
+  };
+
+  return <button onClick={handleClick}>Click</button>;
+}
+
+// ✅ Phải wrap trong try-catch
+function GoodComponent() {
+  const [error, setError] = useState(null);
+
+  const handleClick = () => {
+    try {
+      throw new Error('This is handled');
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  if (error) return <div>Error: {error}</div>;
+
+  return <button onClick={handleClick}>Click</button>;
+}
+```
+
+### Props Reference
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `children` | `ReactNode` | Components được wrap |
+| `fallback` | `ReactNode` | Custom error UI |
+| `onError` | `(error, errorInfo) => void` | Callback khi có lỗi |
+| `onReset` | `() => void` | Callback khi reset |
+
+---
+
+## 🎯 Best Practices
+
+### LoadingSpinner
+
+1. **Use skeleton loaders** cho better UX thay vì spinner đơn thuần
+2. **Inline loading** cho buttons và small actions
+3. **Full screen loading** chỉ dùng cho app initialization
+4. **Always provide text** để user biết đang tải gì
+5. **Consistent colors** với design system của app
+
+### ErrorBoundary
+
+1. **Multiple boundaries** thay vì một boundary lớn
+2. **Log errors** đến external service (Sentry, etc.)
+3. **User-friendly messages** thay vì technical error
+4. **Provide recovery actions** (retry, go home, reload)
+5. **Test error boundaries** bằng cách tạo component throw error
+
+---
+
+## 🧪 Testing
+
+### Test ErrorBoundary
+
+```javascript
+// Create a component that throws error
+function BuggyComponent() {
+  throw new Error('Test error');
+}
+
+// Test
+<ErrorBoundary>
+  <BuggyComponent />
+</ErrorBoundary>
+```
+
+### Trigger error manually
+
+```javascript
+// Add this to any component để test
+if (process.env.NODE_ENV === 'development') {
+  window.triggerError = () => {
+    throw new Error('Manual test error');
+  };
+}
+
+// Console: window.triggerError()
+```
+
+---
+
+## 📝 File Structure
+
+```
+src/
+  ├── components/
+  │   └── common/
+  │       ├── LoadingSpinner.jsx
+  │       ├── LoadingSpinner.css
+  │       ├── ErrorBoundary.jsx
+  │       └── ErrorBoundary.css
+```

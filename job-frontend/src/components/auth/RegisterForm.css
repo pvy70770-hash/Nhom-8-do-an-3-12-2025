@@ -1,0 +1,191 @@
+/* ====== Tổng thể khung đăng ký ====== */
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background: #fff;
+  font-family: 'Poppins', sans-serif;
+  padding-top: 20px;
+}
+
+/* ====== Hộp đăng ký ====== */
+.register-box {
+  background: #fff;
+  border-radius: 24px;
+  width: 420px;
+  padding: 40px 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease;
+}
+
+/* ====== Tiêu đề ====== */
+.register-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.register-header h2 {
+  color: #0003c4;
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* ====== Form ====== */
+.register-form-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ====== Nhãn ====== */
+.form-label {
+  font-size: 15px;
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* ====== Ô nhập liệu ====== */
+.input-wrapper {
+  background: #DADADA;
+  border-radius: 100px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+/* Khi focus vào input, giữ bo tròn và hiệu ứng xanh */
+.input-wrapper:has(.form-input:focus) {
+  background: #e8f7ee;
+  box-shadow: 0 0 0 2px #0022b6;
+  border-radius: 100px; /* ép bo tròn luôn */
+}
+
+/* ====== Input ====== */
+.form-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 15px;
+  color: #333;
+  padding: 10px 0;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 100px;
+  box-shadow: none;
+}
+
+/* Xóa outline khi focus để không vuông */
+.form-input:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 100px !important;
+}
+
+/* ====== Nút đăng ký ====== */
+.submit-button {
+  background: #1926e4;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: 0.3s ease;
+  margin-top: 10px;
+}
+
+.submit-button:hover {
+  background: #0011a8;
+}
+
+/* ====== Thông báo lỗi ====== */
+.error-message {
+  background: #ffe0e0;
+  color: #d00000;
+  font-size: 14px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+/* ====== Dòng phân cách "Hoặc" ====== */
+.divider {
+  text-align: center;
+  position: relative;
+  margin: 25px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: #ccc;
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
+.divider-text {
+  background: #fff;
+  color: #666;
+  padding: 0 10px;
+  font-size: 14px;
+}
+
+/* ====== Nút Google ====== */
+.google-button {
+  background: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+  padding: 12px;
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.3s ease;
+}
+
+.google-button:hover {
+  background: #f1f1f1;
+}
+
+/* ====== Liên kết đăng nhập ====== */
+.login-link {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.login-text {
+  color: #333;
+  font-size: 14px;
+}
+
+.login-button {
+  background: none;
+  border: none;
+  color: #0020b1;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 4px;
+  transition: 0.3s ease;
+}
+
+.login-button:hover {
+  text-decoration: underline;
+}

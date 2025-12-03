@@ -1,0 +1,264 @@
+/* =========================================
+   LOADING SPINNER STYLES
+   ========================================= */
+
+/* Container */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.loading-container.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Text */
+.loading-text {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+/* =========================================
+   TYPE: SPINNER (Default)
+   ========================================= */
+
+.loading-spinner {
+  border: 4px solid rgba(74, 144, 226, 0.1);
+  border-top-color: #4a90e2;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================
+   TYPE: DOTS
+   ========================================= */
+
+.loading-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.loading-dots .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #4a90e2;
+  animation: dotBounce 1.4s infinite ease-in-out both;
+}
+
+.loading-dots .dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.loading-dots .dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes dotBounce {
+  0%, 80%, 100% {
+    transform: scale(0.6);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* =========================================
+   TYPE: PULSE
+   ========================================= */
+
+.loading-pulse {
+  border-radius: 50%;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+}
+
+/* =========================================
+   TYPE: BARS
+   ========================================= */
+
+.loading-bars {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  height: 40px;
+}
+
+.loading-bars .bar {
+  width: 6px;
+  height: 100%;
+  background-color: #4a90e2;
+  border-radius: 3px;
+  animation: barStretch 1.2s ease-in-out infinite;
+}
+
+.loading-bars .bar:nth-child(1) {
+  animation-delay: -0.4s;
+}
+
+.loading-bars .bar:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.loading-bars .bar:nth-child(3) {
+  animation-delay: -0.2s;
+}
+
+.loading-bars .bar:nth-child(4) {
+  animation-delay: -0.1s;
+}
+
+@keyframes barStretch {
+  0%, 40%, 100% {
+    transform: scaleY(0.4);
+  }
+  20% {
+    transform: scaleY(1);
+  }
+}
+
+/* =========================================
+   SKELETON LOADER
+   ========================================= */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e0e0e0 50%,
+    #f0f0f0 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Card Skeleton */
+.card-skeleton {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Job Card Skeleton */
+.job-card-skeleton {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================================
+   UTILITIES
+   ========================================= */
+
+/* Centered Loading */
+.loading-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+/* Inline Loading */
+.loading-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Loading Overlay for specific sections */
+.loading-overlay {
+  position: relative;
+}
+
+.loading-overlay::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .loading-container.fullscreen {
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  .loading-text {
+    color: #ccc;
+  }
+
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      #333 25%,
+      #444 50%,
+      #333 75%
+    );
+  }
+
+  .card-skeleton,
+  .job-card-skeleton {
+    background: #222;
+  }
+}
