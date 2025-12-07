@@ -45,15 +45,29 @@ export default function CVTemplatesPage() {
     : CV_TEMPLATES.filter(t => t.category === selectedCategory);
 
   const handleUseTemplate = (template) => {
+    const templateSlug =
+      template.id === 1 ? "don-gian-01" :
+      template.id === 2 ? "don-gian-02" :
+      template.id === 3 ? "chuyen-nghiep-01" :
+      template.id === 4 ? "chuyen-nghiep-02" :
+      template.id === 5 ? "sang-tao-01" :
+      "sang-tao-02";
+
     const payload = {
-      createMode: 'sample',
+      createMode: "sample",
       templateId: template.id,
+      templateSlug,
       templateMeta: { ...template },
       sampleData: template.defaultContent,
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
     };
-    // Chuyển hướng sang trang Builder
-    navigate('/create-cv', { state: { createPayload: payload, defaultContent: template.defaultContent } });
+
+    navigate(`/cv-template-editor?template=${templateSlug}`, {
+      state: {
+        createPayload: payload,
+        defaultContent: template.defaultContent,
+      },
+    });
   };
 
   const openPreview = (tpl) => setPreviewTemplate(tpl);

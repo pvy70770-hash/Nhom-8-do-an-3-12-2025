@@ -28,6 +28,7 @@ import CreateCV from './pages/CV/CreateCV';
 import CreateCVAdvanced from './pages/CV/CreateCVAdvanced';
 import CreateCVProfessional from './pages/CV/CreateCVProfessional';
 import CreateCVCreative from './pages/CV/CreateCVCreative';
+import TemplateEditor from './pages/CV/TemplateEditor';
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import AdminLoginForm from "./pages/Admin/AdminLoginForm";
 import LoginPage from './pages/User/LoginPage';
@@ -237,6 +238,7 @@ function AppContent() {
         <Route path="/create-cv/creative/:templateId" element={<CreateCVCreative />} />
         <Route path="/tao-cv/:templateId" element={<CreateCV />} />
         <Route path="/cv-templates" element={<CVTemplatesPage />} />
+        <Route path="/cv-template-editor" element={<TemplateEditor />} />
         
         {/* User Profile - Protected Route */}
         <Route
