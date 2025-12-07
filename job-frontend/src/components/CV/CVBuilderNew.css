@@ -1,0 +1,138 @@
+/* CVBuilderNew.css - Pure CSS for Simple 01 Live Editor */
+
+:root {
+  --app-bg: #f4f5f7;
+  --sidebar-width: 320px;
+  --paper-width-mm: 210mm;
+  --paper-height-mm: 297mm;
+  --primary: #111111;
+  --muted: #6b7280;
+}
+
+html, body, #root { height: 100%; }
+
+.cv-app-container {
+  display: flex;
+  height: 100vh;
+  background: var(--app-bg);
+  font-family: 'Times New Roman', 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+/* Sidebar */
+.editor-sidebar {
+  width: var(--sidebar-width);
+  background: #fff;
+  border-right: 1px solid #e6e9ee;
+  display: flex;
+}
+
+.menu-strip {
+  width: 56px;
+  background: #fafafa;
+  border-right: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 6px;
+}
+
+.menu-btn {
+  width: 36px;
+  height: 36px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #666;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.menu-btn.active { background: #00a862; color: #fff; }
+
+.sidebar-main {
+  flex: 1;
+  padding: 16px;
+  overflow: auto;
+}
+
+.sidebar-top h2 { margin: 0 0 8px 0; font-size: 16px }
+.sidebar-actions { display:flex; gap:8px; margin-bottom: 12px }
+.btn { background: #00a862; color: #fff; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer }
+.btn.secondary { background: #0b76ff }
+
+.panel { margin-top: 8px }
+.panel-section { margin-bottom: 16px }
+.panel-section label { display:block; margin-bottom:6px; color:var(--muted); font-size:13px }
+.panel-section select, .panel-section input[type="range"] { width:100%; margin-bottom:10px }
+.color-palette { display:flex; gap:8px; margin-top:8px }
+.color-btn { width:28px; height:28px; border-radius:50%; border:2px solid rgba(0,0,0,0.06); cursor:pointer }
+.color-btn.sel { outline:3px solid rgba(0,168,98,0.15) }
+.muted { color:var(--muted); font-size:13px }
+.add-actions { display:flex; gap:8px; margin-top:8px }
+.icon-btn { border:none; background:transparent; cursor:pointer; font-size:16px }
+
+/* Preview area */
+.preview-area { flex:1; display:flex; align-items:flex-start; justify-content:center; padding:28px; overflow:auto }
+.paper-wrap { position:relative }
+.cv-preview { padding:18px }
+
+.cv-page {
+  width: var(--paper-width-mm);
+  min-height: calc(var(--paper-height-mm));
+  background:#fff;
+  box-shadow: 0 6px 18px rgba(11,19,40,0.08);
+  padding:36px;
+  box-sizing:border-box;
+  color:var(--primary);
+}
+
+/* Floating toolbar */
+.floating-toolbar {
+  position:absolute;
+  z-index:50;
+  display:flex;
+  gap:6px;
+  background: #fff;
+  border-radius:6px;
+  box-shadow:0 6px 14px rgba(0,0,0,.12);
+  padding:6px;
+}
+.floating-toolbar button { border:none; background:transparent; cursor:pointer; padding:6px }
+
+/* Header */
+.cv-header { display:flex; gap:20px; align-items:center; margin-bottom:18px }
+.avatar { width:80px; flex:0 0 80px }
+.avatar-placeholder { width:80px; height:80px; border-radius:50%; background:#d1d5db }
+.header-info { flex:1 }
+.cv-name { margin:0; font-size:24px; font-weight:700; color:var(--primary) }
+.cv-job { margin-top:6px; color:var(--muted) }
+
+.info-table { margin-top:12px; display:flex; flex-direction:column; gap:8px }
+.info-table .row { display:flex; gap:12px; align-items:center }
+.info-table .label { width:90px; color:var(--muted); font-size:13px }
+.info-table .value { flex:1; padding-bottom:6px; border-bottom:1px dotted #999; min-height:18px }
+
+/* Sections */
+.cv-section { margin-top:20px }
+.section-title { margin:0 0 8px 0; font-size:13px; font-weight:700; text-transform:uppercase; color:var(--primary); padding-bottom:8px; border-bottom:1px solid rgba(0,0,0,0.06) }
+.section-body { padding-top:12px }
+
+.timeline-item { position:relative; padding:10px 0; border-bottom:1px dotted rgba(0,0,0,0.04) }
+.timeline-row { display:flex; gap:12px; align-items:flex-start }
+.time { width:120px; color:var(--muted); font-size:13px }
+.main-title { flex:1; font-weight:700 }
+.timeline-sub { color:var(--muted); margin-top:6px }
+.timeline-desc { margin-top:8px }
+.row-actions { position:absolute; right:0; top:8px; display:flex; gap:6px; opacity:0 }
+.timeline-item:hover .row-actions { opacity:1 }
+
+/* Editable elements styling */
+[contenteditable] { outline:none }
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .editor-sidebar { display:none }
+  .cv-app-container { padding: 8px }
+  .cv-page { width: 100%; min-height: auto }
+}

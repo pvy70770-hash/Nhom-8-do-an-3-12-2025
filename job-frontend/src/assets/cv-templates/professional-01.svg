@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1100" viewBox="0 0 800 1100">
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <rect x="40" y="40" width="720" height="110" rx="6" fill="#2b6cb0" />
+  <rect x="60" y="170" width="680" height="780" rx="6" fill="#fff" stroke="#eef3fb" />
+  <text x="60" y="100" font-family="Segoe UI, Roboto, Arial" font-size="28" fill="#fff">Professional 01</text>
+  <text x="80" y="210" font-family="Segoe UI, Roboto, Arial" font-size="18" fill="#222">Họ và tên - Vị trí</text>
+</svg>
