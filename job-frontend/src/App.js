@@ -24,6 +24,10 @@ import EmployerRegisterForm from "./pages/Employer/EmployerRegisterForm";
 import EmployerDashboard from "./pages/Employer/EmployerDashboard";
 import Footer from "./components/common/Footer";
 import CVTemplatesPage from "./components/CV/CVTemplatesPage";
+import CreateCV from './pages/CV/CreateCV';
+import CreateCVAdvanced from './pages/CV/CreateCVAdvanced';
+import CreateCVProfessional from './pages/CV/CreateCVProfessional';
+import CreateCVCreative from './pages/CV/CreateCVCreative';
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import AdminLoginForm from "./pages/Admin/AdminLoginForm";
 import LoginPage from './pages/User/LoginPage';
@@ -228,6 +232,10 @@ function AppContent() {
 
         {/* Other routes */}
         <Route path="/create-cv" element={<CVBuilder />} />
+        <Route path="/create-cv-advanced/:templateId" element={<CreateCVAdvanced />} />
+        <Route path="/create-cv/professional/:templateId" element={<CreateCVProfessional />} />
+        <Route path="/create-cv/creative/:templateId" element={<CreateCVCreative />} />
+        <Route path="/tao-cv/:templateId" element={<CreateCV />} />
         <Route path="/cv-templates" element={<CVTemplatesPage />} />
         
         {/* User Profile - Protected Route */}

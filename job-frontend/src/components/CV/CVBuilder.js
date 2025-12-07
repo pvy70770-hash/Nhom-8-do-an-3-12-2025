@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function CVBuilder() {
+  const location = useLocation();
   const [cvData, setCvData] = useState({
     fullName: '',
     position: '',
@@ -22,6 +24,33 @@ function CVBuilder() {
   useEffect(() => {
     loadCVData();
   }, []);
+
+  // If navigated here with a createPayload (from CreateCV), prefill the CV fields
+  useEffect(() => {
+    try {
+      const payload = location && location.state && location.state.createPayload;
+      if (payload) {
+        setCvData(prev => {
+          const next = { ...prev };
+          if (payload.position) next.position = payload.position;
+          if (payload.language) next.language = payload.language;
+          if (payload.template) next.templateMeta = payload.template;
+          // Provide a default objective when using template source
+          if (payload.source === 'template' && !prev.objective) {
+            next.objective = `Sử dụng nội dung mẫu: ${payload.template?.title || ''}`;
+          }
+          return next;
+        });
+        // Also persist minimal cv-data to localStorage so autosave works
+        const minimal = JSON.parse(localStorage.getItem('cv-data') || '{}');
+        minimal.position = payload.position || minimal.position;
+        minimal.templateMeta = payload.template || minimal.templateMeta;
+        localStorage.setItem('cv-data', JSON.stringify({ ...minimal }));
+      }
+    } catch (err) {
+      console.warn('Failed to apply createPayload', err);
+    }
+  }, [location]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
